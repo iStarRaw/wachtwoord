@@ -5,13 +5,123 @@ import java.security.SecureRandom;
 public class WachtwoordGenerator {
 	private final String CANDIDATE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
 	private SecureRandom secGenerator = new SecureRandom();
-	
-	
-	
-	
-	
-	
-	
+
+	public String generatePassword() {
+		createNewList();
+
+		generateChar();
+		addCharToList(); // 1e character
+
+		generateChar();
+		addCharToList(); // 2e character
+
+		generateThirdChar();
+		addCharToList(); // 3e character
+
+		while (containsSequence()) {
+			replaceLastChar();
+		}
+
+		while (containsTriplicates()) {
+			replaceLastChar();
+		}
+
+//		String str = password.stream().map(e -> e.toString()).collect(Collectors.joining());
+//		System.out.println(str);
+//		return str;
+		return null;
+
+	}
+
+	private void lastThreeAllSymbol() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void lastThreeAllDigit() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void lastThreeAllLetter() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void replaceLastChar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private boolean containsTriplicates() {
+		return false;
+		// TODO Auto-generated method stub
+
+	}
+
+	private boolean containsSequence() {
+		return false;
+		// TODO Auto-generated method stub
+
+	}
+
+	private void generateThirdChar() {
+		// TODO No switch or ifs: better map or polymorphism
+		if (lastTwoAllLetter()) {
+			generateLetterChar();
+		} else if (lastTwoAllDigit()) {
+			generateDigitChar();
+		} else if (lastTwoAllSymbol()) {
+			generateSymbolChar();
+		} else {
+			generateChar();
+		}
+
+	}
+
+	private void generateSymbolChar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void generateDigitChar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void generateLetterChar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private boolean lastTwoAllSymbol() {
+		return false;
+		// TODO Auto-generated method stub
+
+	}
+
+	private boolean lastTwoAllDigit() {
+		return false;
+		// TODO Auto-generated method stub
+
+	}
+
+	private boolean lastTwoAllLetter() {
+		return false;
+		// TODO Auto-generated method stub
+
+	}
+
+	private void addCharToList() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void createNewList() {
+		// TODO Auto-generated method stub
+
+	}
+
 	/**
 	 * Generates one random char. Extended ASCII: 0 - 255
 	 * 

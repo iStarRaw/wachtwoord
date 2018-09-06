@@ -12,7 +12,7 @@ public class App
         
     	WachtwoordGenerator wg = new WachtwoordGenerator();
     	
-    	wg.generateChar();
+    	
     	
     	
     	System.out.println( "Hello World!" );
