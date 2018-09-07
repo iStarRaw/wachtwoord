@@ -11,13 +11,12 @@ public class WachtwoordGenerator {
 	private List<Character> password;
 
 	public String generatePassword() {
-		password = new ArrayList<>();
+		
+		createPassword();
+		
+		password.add(generateChar());				// 1e character
 
-		generateChar();
-		addCharToList(); // 1e character
-
-		generateChar();
-		addCharToList(); // 2e character
+		password.add(generateChar());				// 2e character
 
 		generateThirdChar();
 		addCharToList(); // 3e character
@@ -90,6 +89,10 @@ public class WachtwoordGenerator {
 //		return str;
 		return null;
 
+	}
+
+	private void createPassword() {
+		password = new ArrayList<>();
 	}
 
 	private void generateFourthTillEightChar() {
