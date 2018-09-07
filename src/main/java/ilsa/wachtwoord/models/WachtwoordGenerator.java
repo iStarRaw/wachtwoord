@@ -26,6 +26,61 @@ public class WachtwoordGenerator {
 			replaceLastChar();
 		}
 
+		generateFourthTillEightChar();
+		addCharToList(); // 4e character
+		
+		while (containsSequence()) {
+			replaceLastChar();
+		}
+
+		while (containsTriplicates()) {
+			replaceLastChar();
+		}
+		
+		generateFourthTillEightChar();
+		addCharToList(); // 5e character
+		
+		while (containsSequence()) {
+			replaceLastChar();
+		}
+
+		while (containsTriplicates()) {
+			replaceLastChar();
+		}
+		
+		generateFourthTillEightChar();
+		addCharToList(); // 6e character
+		
+		while (containsSequence()) {
+			replaceLastChar();
+		}
+
+		while (containsTriplicates()) {
+			replaceLastChar();
+		}
+		
+		generateFourthTillEightChar();
+		addCharToList(); // 7e character
+		
+		while (containsSequence()) {
+			replaceLastChar();
+		}
+
+		while (containsTriplicates()) {
+			replaceLastChar();
+		}
+		
+		generateFourthTillEightChar();
+		addCharToList(); // 8e character
+		
+		while (containsSequence()) {
+			replaceLastChar();
+		}
+
+		while (containsTriplicates()) {
+			replaceLastChar();
+		}
+		
 //		String str = password.stream().map(e -> e.toString()).collect(Collectors.joining());
 //		System.out.println(str);
 //		return str;
@@ -33,17 +88,25 @@ public class WachtwoordGenerator {
 
 	}
 
-	private void lastThreeAllSymbol() {
+	private void generateFourthTillEightChar() {
+		// TODO No switch or ifs: better map or polymorphism
+		
+	}
+
+	private boolean lastThreeAllSymbol() {
+		return false;
 		// TODO Auto-generated method stub
 
 	}
 
-	private void lastThreeAllDigit() {
+	private boolean lastThreeAllDigit() {
+		return false;
 		// TODO Auto-generated method stub
 
 	}
 
-	private void lastThreeAllLetter() {
+	private boolean lastThreeAllLetter() {
+		return false;
 		// TODO Auto-generated method stub
 
 	}
