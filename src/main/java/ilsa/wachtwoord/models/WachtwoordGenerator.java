@@ -2,14 +2,17 @@ package ilsa.wachtwoord.models;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class WachtwoordGenerator {
 	private final String CANDIDATE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
 	private SecureRandom secGenerator = new SecureRandom();
 	private List<Character> password;
-
+	private Map<Character, Integer> charCount = new HashMap<Character, Integer>(); // voor bijhouden triplicates
+	
 	public String generatePassword(int length) {
 
 		createPassword();
@@ -26,8 +29,9 @@ public class WachtwoordGenerator {
 
 			replaceIfNeeded();
 		}
-
 		
+		//TODO check last 2 chars
+
 		String str = password.stream().map(e -> e.toString()).collect(Collectors.joining());
 		return str;
 
@@ -57,7 +61,7 @@ public class WachtwoordGenerator {
 		password.add(c);
 
 	}
-	
+
 	/**
 	 * Checks the existing sequence of the characters in the password with the
 	 * conditions set by the RIVG. If these are not met the corresponding char will
@@ -68,20 +72,44 @@ public class WachtwoordGenerator {
 			replaceLastChar();
 		}
 
-		while (containsTriplicates()) {
+		while (containsTriplicates(password)) {
 			replaceLastChar();
 		}
 	}
-	
+
+	/**
+	 * 
+	 * Checks whether the password contains the same char 3 times.
+	 * 
+	 * @return boolean
+	 */
+	public boolean containsTriplicates(List<Character> list) {
+		for (Character c : list) {
+			Integer count = charCount.get(c);
+			charCount.put(c, (count == null) ? 1 : count + 1);
+					
+			if (charCount.containsValue(3)) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+	public boolean containsSequence() {
+		return false;
+		// TODO Auto-generated method stub
+
+	}
+
 	/**
 	 * 
 	 */
 	private void replaceLastChar() {
 		password.remove(password.size() - 1);
 		password.add(generateChar());
-		
-	}
 
+	}
 
 	private char generateFourthTillEightChar() {
 		return 0;
@@ -102,19 +130,6 @@ public class WachtwoordGenerator {
 	}
 
 	private boolean lastThreeAllLetter() {
-		return false;
-		// TODO Auto-generated method stub
-
-	}
-
-	
-	private boolean containsTriplicates() {
-		return false;
-		// TODO Auto-generated method stub
-
-	}
-
-	private boolean containsSequence() {
 		return false;
 		// TODO Auto-generated method stub
 
