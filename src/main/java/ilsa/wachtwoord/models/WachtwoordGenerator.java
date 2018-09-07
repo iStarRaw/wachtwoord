@@ -6,22 +6,20 @@ import java.util.List;
 
 public class WachtwoordGenerator {
 	private final String CANDIDATE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
-	private SecureRandom secGenerator = new SecureRandom();
+	private SecureRandom secGenerator = new SecureRandom();	
 	private List<Character> password;
 
 	public String generatePassword() {
-		createPassword();
-
-		generateChar();
-		addCharToList(); // 1e character
-
-		generateChar();
-		addCharToList(); // 2e character
 		
 		createPassword();
 		
+		addCharToPassword(); // 1e character
+		
+		addCharToPassword(); // 2e character				
+
+
 		generateThirdChar();
-		addCharToList(); // 3e character
+		addCharToPassword(); // 3e character
 
 		while (containsSequence()) {
 			replaceLastChar();
@@ -32,7 +30,7 @@ public class WachtwoordGenerator {
 		}
 
 		generateFourthTillEightChar();
-		addCharToList(); // 4e character
+		addCharToPassword(); // 4e character
 		
 		while (containsSequence()) {
 			replaceLastChar();
@@ -43,7 +41,7 @@ public class WachtwoordGenerator {
 		}
 		
 		generateFourthTillEightChar();
-		addCharToList(); // 5e character
+		addCharToPassword(); // 5e character
 		
 		while (containsSequence()) {
 			replaceLastChar();
@@ -54,7 +52,7 @@ public class WachtwoordGenerator {
 		}
 		
 		generateFourthTillEightChar();
-		addCharToList(); // 6e character
+		addCharToPassword(); // 6e character
 		
 		while (containsSequence()) {
 			replaceLastChar();
@@ -65,7 +63,7 @@ public class WachtwoordGenerator {
 		}
 		
 		generateFourthTillEightChar();
-		addCharToList(); // 7e character
+		addCharToPassword(); // 7e character
 		
 		while (containsSequence()) {
 			replaceLastChar();
@@ -76,7 +74,7 @@ public class WachtwoordGenerator {
 		}
 		
 		generateFourthTillEightChar();
-		addCharToList(); // 8e character
+		addCharToPassword(); // 8e character
 		
 		while (containsSequence()) {
 			replaceLastChar();
@@ -95,6 +93,24 @@ public class WachtwoordGenerator {
 
 	private void createPassword() {
 		password = new ArrayList<>();
+	}
+
+	/**
+	 * Generates one random char. Extended ASCII: 0 - 255
+	 * 
+	 * @return char
+	 */
+	public char generateChar() {
+		char randomChar = CANDIDATE_CHARS.charAt(secGenerator.nextInt(CANDIDATE_CHARS.length()));
+		return randomChar;
+	}
+	
+	/**
+	 * Adds a char to the list
+	 */
+	private void addCharToPassword() {
+		password.add(generateChar());
+		
 	}
 
 	private void generateFourthTillEightChar() {
@@ -184,20 +200,9 @@ public class WachtwoordGenerator {
 
 	}
 
-	private void addCharToList() {
-		// TODO Auto-generated method stub
+	
 
-	}
-
-
-	/**
-	 * Generates one random char. Extended ASCII: 0 - 255
-	 * 
-	 * @return char
-	 */
-	public char generateChar() {
-		char randomChar = CANDIDATE_CHARS.charAt(secGenerator.nextInt(CANDIDATE_CHARS.length()));
-		return randomChar;
-	}
+	
+	
 
 }
