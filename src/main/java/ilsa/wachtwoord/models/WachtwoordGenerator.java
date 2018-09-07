@@ -34,21 +34,6 @@ public class WachtwoordGenerator {
 	}
 
 	/**
-	 * Checks the existing sequence of the characters in the password with the
-	 * conditions set by the RIVG. If these are not met the corresponding char will
-	 * be replaced.
-	 */
-	private void replaceIfNeeded() {
-		while (containsSequence()) {
-			replaceLastChar();
-		}
-
-		while (containsTriplicates()) {
-			replaceLastChar();
-		}
-	}
-
-	/**
 	 * Creates a new list where the password can be generated into
 	 */
 	private void createPassword() {
@@ -72,6 +57,31 @@ public class WachtwoordGenerator {
 		password.add(c);
 
 	}
+	
+	/**
+	 * Checks the existing sequence of the characters in the password with the
+	 * conditions set by the RIVG. If these are not met the corresponding char will
+	 * be replaced.
+	 */
+	private void replaceIfNeeded() {
+		while (containsSequence()) {
+			replaceLastChar();
+		}
+
+		while (containsTriplicates()) {
+			replaceLastChar();
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private void replaceLastChar() {
+		password.remove(password.size() - 1);
+		password.add(generateChar());
+		
+	}
+
 
 	private char generateFourthTillEightChar() {
 		return 0;
@@ -97,11 +107,7 @@ public class WachtwoordGenerator {
 
 	}
 
-	private void replaceLastChar() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	private boolean containsTriplicates() {
 		return false;
 		// TODO Auto-generated method stub
