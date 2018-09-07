@@ -3,94 +3,54 @@ package ilsa.wachtwoord.models;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WachtwoordGenerator {
 	private final String CANDIDATE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
-	private SecureRandom secGenerator = new SecureRandom();	
+	private SecureRandom secGenerator = new SecureRandom();
 	private List<Character> password;
 
-	public String generatePassword() {
-		
+	public String generatePassword(int length) {
+
 		createPassword();
-		
-		addCharToPassword(); // 1e character
-		
-		addCharToPassword(); // 2e character				
 
+		char first = generateChar();
+		addCharToPassword(first); // 1e character
 
-		generateThirdChar();
-		addCharToPassword(); // 3e character
+		char second = generateChar();
+		addCharToPassword(second); // 2e character
 
-		while (containsSequence()) {
-			replaceLastChar();
-		}
+		for (int i = 2; i < length; i++) {
+			char nextChar = generateThirdChar();
+			addCharToPassword(nextChar);
 
-		while (containsTriplicates()) {
-			replaceLastChar();
+			replaceIfNeeded();
 		}
 
-		generateFourthTillEightChar();
-		addCharToPassword(); // 4e character
 		
-		while (containsSequence()) {
-			replaceLastChar();
-		}
-
-		while (containsTriplicates()) {
-			replaceLastChar();
-		}
-		
-		generateFourthTillEightChar();
-		addCharToPassword(); // 5e character
-		
-		while (containsSequence()) {
-			replaceLastChar();
-		}
-
-		while (containsTriplicates()) {
-			replaceLastChar();
-		}
-		
-		generateFourthTillEightChar();
-		addCharToPassword(); // 6e character
-		
-		while (containsSequence()) {
-			replaceLastChar();
-		}
-
-		while (containsTriplicates()) {
-			replaceLastChar();
-		}
-		
-		generateFourthTillEightChar();
-		addCharToPassword(); // 7e character
-		
-		while (containsSequence()) {
-			replaceLastChar();
-		}
-
-		while (containsTriplicates()) {
-			replaceLastChar();
-		}
-		
-		generateFourthTillEightChar();
-		addCharToPassword(); // 8e character
-		
-		while (containsSequence()) {
-			replaceLastChar();
-		}
-
-		while (containsTriplicates()) {
-			replaceLastChar();
-		}
-		
-//		String str = password.stream().map(e -> e.toString()).collect(Collectors.joining());
-//		System.out.println(str);
-//		return str;
-		return null;
+		String str = password.stream().map(e -> e.toString()).collect(Collectors.joining());
+		return str;
 
 	}
 
+	/**
+	 * Checks the existing sequence of the characters in the password with the
+	 * conditions set by the RIVG. If these are not met the corresponding char will
+	 * be replaced.
+	 */
+	private void replaceIfNeeded() {
+		while (containsSequence()) {
+			replaceLastChar();
+		}
+
+		while (containsTriplicates()) {
+			replaceLastChar();
+		}
+	}
+
+	/**
+	 * Creates a new list where the password can be generated into
+	 */
 	private void createPassword() {
 		password = new ArrayList<>();
 	}
@@ -104,18 +64,19 @@ public class WachtwoordGenerator {
 		char randomChar = CANDIDATE_CHARS.charAt(secGenerator.nextInt(CANDIDATE_CHARS.length()));
 		return randomChar;
 	}
-	
+
 	/**
 	 * Adds a char to the list
 	 */
-	private void addCharToPassword() {
-		password.add(generateChar());
-		
+	private void addCharToPassword(char c) {
+		password.add(c);
+
 	}
 
-	private void generateFourthTillEightChar() {
+	private char generateFourthTillEightChar() {
+		return 0;
 		// TODO No switch or ifs: better map or polymorphism
-		
+
 	}
 
 	private boolean lastThreeAllSymbol() {
@@ -153,31 +114,35 @@ public class WachtwoordGenerator {
 
 	}
 
-	private void generateThirdChar() {
+	private char generateThirdChar() {
 		// TODO No switch or ifs: better map or polymorphism
+		char c;
 		if (lastTwoAllLetter()) {
-			generateLetterChar();
+			return generateLetterChar();
 		} else if (lastTwoAllDigit()) {
-			generateDigitChar();
+			return generateDigitChar();
 		} else if (lastTwoAllSymbol()) {
-			generateSymbolChar();
+			return generateSymbolChar();
 		} else {
-			generateChar();
+			return generateChar();
 		}
 
 	}
 
-	private void generateSymbolChar() {
+	private char generateSymbolChar() {
+		return 0;
 		// TODO Auto-generated method stub
 
 	}
 
-	private void generateDigitChar() {
+	private char generateDigitChar() {
+		return 0;
 		// TODO Auto-generated method stub
 
 	}
 
-	private void generateLetterChar() {
+	private char generateLetterChar() {
+		return 0;
 		// TODO Auto-generated method stub
 
 	}
@@ -199,10 +164,5 @@ public class WachtwoordGenerator {
 		// TODO Auto-generated method stub
 
 	}
-
-	
-
-	
-	
 
 }
