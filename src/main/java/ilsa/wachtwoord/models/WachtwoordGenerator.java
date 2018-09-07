@@ -1,20 +1,25 @@
 package ilsa.wachtwoord.models;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WachtwoordGenerator {
 	private final String CANDIDATE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
 	private SecureRandom secGenerator = new SecureRandom();
+	private List<Character> password;
 
 	public String generatePassword() {
-		createNewList();
+		createPassword();
 
 		generateChar();
 		addCharToList(); // 1e character
 
 		generateChar();
 		addCharToList(); // 2e character
-
+		
+		createPassword();
+		
 		generateThirdChar();
 		addCharToList(); // 3e character
 
@@ -86,6 +91,10 @@ public class WachtwoordGenerator {
 //		return str;
 		return null;
 
+	}
+
+	private void createPassword() {
+		password = new ArrayList<>();
 	}
 
 	private void generateFourthTillEightChar() {
@@ -180,10 +189,6 @@ public class WachtwoordGenerator {
 
 	}
 
-	private void createNewList() {
-		// TODO Auto-generated method stub
-
-	}
 
 	/**
 	 * Generates one random char. Extended ASCII: 0 - 255
