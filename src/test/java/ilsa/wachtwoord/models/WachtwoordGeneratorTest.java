@@ -10,6 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ilsa.wachtwoord.conditions.TriplicatesCondition;
+
 public class WachtwoordGeneratorTest {
 	private WachtwoordGenerator wg;
 	
@@ -32,38 +34,12 @@ public class WachtwoordGeneratorTest {
 		
 	}
 	
-	@Test
-	public void testContainsTriplicatesforThreeChars() {
-		List<Character> list = new ArrayList<>(Arrays.asList('c','R','$','6','2','4','c','c'));
-		
-		boolean resultTrue = wg.containsTriplicates(list);
-		
-		assertTrue(resultTrue);	
-		
-	}
 	
 	
 	@Test
-	public void testContainsTriplicatesFalse() {
-	List<Character> list = new ArrayList<>(Arrays.asList('c','R','$','6','2','4','-','f'));
-	
-	boolean resultFalse = wg.containsTriplicates(list);
-	
-	assertFalse(resultFalse);
-	
+	public void testReplaceLastCharWithRandom() {
+		
 	}
-	
-	
-	@Test
-	public void testContainsTriplicatesFalseOnlyDuplicates() {
-	List<Character> list = new ArrayList<>(Arrays.asList('c','R','$','6','2','4','-','c'));
-	
-	boolean resultFalse = wg.containsTriplicates(list);
-	
-	assertFalse(resultFalse);
-	
-	}
-	
 	
 	
 	

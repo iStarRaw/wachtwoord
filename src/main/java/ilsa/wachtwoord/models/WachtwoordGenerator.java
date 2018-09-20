@@ -1,49 +1,63 @@
 package ilsa.wachtwoord.models;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
+import ilsa.wachtwoord.conditions.SameSortTogetherCondition;
+import ilsa.wachtwoord.conditions.SequenceCondition;
+import ilsa.wachtwoord.conditions.TriplicatesCondition;
 
 public class WachtwoordGenerator {
 	private final String CANDIDATE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
 	private SecureRandom secGenerator = new SecureRandom();
-	private List<Character> password;
-	private Map<Character, Integer> charCount = new HashMap<Character, Integer>(); // voor bijhouden triplicates
-	
-	public String generatePassword(int length) {
 
-		createPassword();
+	private Wachtwoord ww;
 
-		char first = generateChar();
-		addCharToPassword(first); // 1e character
+	private SequenceCondition sq;
+	private TriplicatesCondition tp;
+	private SameSortTogetherCondition sst;
 
-		char second = generateChar();
-		addCharToPassword(second); // 2e character
+	public void generatePassword() {
 
-		for (int i = 2; i < length; i++) {
-			char nextChar = generateThirdChar();
-			addCharToPassword(nextChar);
+		ww = new Wachtwoord(8);
+		sq = new SequenceCondition();
+		tp = new TriplicatesCondition();
+		sst = new SameSortTogetherCondition();
 
-			replaceIfNeeded();
-		}
+		for (int i = 0; i < ww.getMaxChar(); i++) {
+
+			//add char
+			char charToAdd = generateChar();
+			ww.addCharToPassword(charToAdd);
+			System.out.println(ww.toString());
 		
-		//TODO check last 2 chars
+			//check for triplicates
+			while (tp.testCondition(ww.getPassword(), charToAdd)) {
+				replaceLastChar();
+			}
+			
+			//check for sequences: ABC, 321
+			while (sq.testCondition(ww.getPassword(), charToAdd)) {
+				replaceLastChar();
+			}
+			
+			//check for same sorts
 
-		String str = password.stream().map(e -> e.toString()).collect(Collectors.joining());
-		return str;
+		}
+
+		// TODO check last 2 chars
+
+		System.out.println(ww.toString());
 
 	}
 
-	/**
-	 * Creates a new list where the password can be generated into
-	 */
-	private void createPassword() {
-		password = new ArrayList<>();
+	
+	private void replaceLastChar() {
+		ww.removeLastChar();
+		char charToAdd = generateChar();
+		ww.addCharToPassword(charToAdd);
 	}
-
+	
 	/**
 	 * Generates one random char. Extended ASCII: 0 - 255
 	 * 
@@ -54,68 +68,9 @@ public class WachtwoordGenerator {
 		return randomChar;
 	}
 
-	/**
-	 * Adds a char to the list
-	 */
-	private void addCharToPassword(char c) {
-		password.add(c);
+	
 
-	}
-
-	/**
-	 * Checks the existing sequence of the characters in the password with the
-	 * conditions set by the RIVG. If these are not met the corresponding char will
-	 * be replaced.
-	 */
-	private void replaceIfNeeded() {
-		while (containsSequence()) {
-			replaceLastChar();
-		}
-
-		while (containsTriplicates(password)) {
-			replaceLastChar();
-		}
-	}
-
-	/**
-	 * 
-	 * Checks whether the password contains the same char 3 times.
-	 * 
-	 * @return boolean
-	 */
-	public boolean containsTriplicates(List<Character> list) {
-		for (Character c : list) {
-			Integer count = charCount.get(c);
-			charCount.put(c, (count == null) ? 1 : count + 1);
-					
-			if (charCount.containsValue(3)) {
-				return true;
-			}
-		}
-		return false;
-
-	}
-
-	public boolean containsSequence() {
-		return false;
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * 
-	 */
-	private void replaceLastChar() {
-		password.remove(password.size() - 1);
-		password.add(generateChar());
-
-	}
-
-	private char generateFourthTillEightChar() {
-		return 0;
-		// TODO No switch or ifs: better map or polymorphism
-
-	}
+	
 
 	private boolean lastThreeAllSymbol() {
 		return false;

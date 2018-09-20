@@ -12,10 +12,8 @@ public class App
         
     	WachtwoordGenerator wg = new WachtwoordGenerator();
     	
-    	wg.generatePassword(8);
     	
-    	System.out.println(wg.generatePassword(8));
-    	
+    	wg.generatePassword();
     	
     	
     	
