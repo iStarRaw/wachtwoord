@@ -42,11 +42,22 @@ public class WachtwoordGenerator {
 			}
 			
 			//check for same sorts
+			if (sst.testCondition(ww.getPassword(), charToAdd)) {
+				 // TODO toevoegen zelfde soort
+				 //2 dezelfde soort dan 3e ook dezelfde
+				//3 dezelfde soort dan 4e andere soort
+				
+				
+			}
+			
+			//bij 3 zelfde soort
+			
 
 		}
 
 		// TODO check last 2 chars
 
+		
 		System.out.println(ww.toString());
 
 	}
@@ -66,79 +77,6 @@ public class WachtwoordGenerator {
 	public char generateChar() {
 		char randomChar = CANDIDATE_CHARS.charAt(secGenerator.nextInt(CANDIDATE_CHARS.length()));
 		return randomChar;
-	}
-
-	
-
-	
-
-	private boolean lastThreeAllSymbol() {
-		return false;
-		// TODO Auto-generated method stub
-
-	}
-
-	private boolean lastThreeAllDigit() {
-		return false;
-		// TODO Auto-generated method stub
-
-	}
-
-	private boolean lastThreeAllLetter() {
-		return false;
-		// TODO Auto-generated method stub
-
-	}
-
-	private char generateThirdChar() {
-		// TODO No switch or ifs: better map or polymorphism
-		char c;
-		if (lastTwoAllLetter()) {
-			return generateLetterChar();
-		} else if (lastTwoAllDigit()) {
-			return generateDigitChar();
-		} else if (lastTwoAllSymbol()) {
-			return generateSymbolChar();
-		} else {
-			return generateChar();
-		}
-
-	}
-
-	private char generateSymbolChar() {
-		return 0;
-		// TODO Auto-generated method stub
-
-	}
-
-	private char generateDigitChar() {
-		return 0;
-		// TODO Auto-generated method stub
-
-	}
-
-	private char generateLetterChar() {
-		return 0;
-		// TODO Auto-generated method stub
-
-	}
-
-	private boolean lastTwoAllSymbol() {
-		return false;
-		// TODO Auto-generated method stub
-
-	}
-
-	private boolean lastTwoAllDigit() {
-		return false;
-		// TODO Auto-generated method stub
-
-	}
-
-	private boolean lastTwoAllLetter() {
-		return false;
-		// TODO Auto-generated method stub
-
 	}
 
 }
