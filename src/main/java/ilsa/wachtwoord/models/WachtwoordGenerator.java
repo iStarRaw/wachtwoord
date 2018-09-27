@@ -22,16 +22,15 @@ public class WachtwoordGenerator {
 	private SequenceCondition sq;
 	private TriplicatesCondition tp;
 	private SameSortTogetherCondition sst;
-	
+
 	public WachtwoordGenerator() {
 		sq = new SequenceCondition();
 		tp = new TriplicatesCondition();
 		sst = new SameSortTogetherCondition();
 	}
-	
 
 	public void generatePassword(int length) {
-		
+
 		ww = new Wachtwoord(length);
 
 		for (int i = 0; i < length; i++) {
@@ -41,23 +40,21 @@ public class WachtwoordGenerator {
 			String charSort = sst.findSortFirstTwo(ww.getPassword());
 
 			replaceTwoTogetherIfNeeded(charToAdd, charSort);
-			
+
 			replaceFourTogetherIfNeeded(charSort);
-			
+
 			replaceSequenceIfNeeded(charToAdd);
-			
+
 			replaceTriplicatesIfNeeded(charToAdd);
 
 		}
 
 		checkLastTwoCharsAndReplaceIfNeeded();
-		
+
 		System.out.println(ww.toString());
-		
+
 	}
 
-
-	
 	/**
 	 * Checks whether the first two chars of a pair of three are of the same sort.
 	 * If the one before the first (the last of the pair of three before) is of
@@ -96,9 +93,10 @@ public class WachtwoordGenerator {
 			replaceLastChar();
 		}
 	}
-	
+
 	/**
-	 * 
+	 * Checks if the last two chars of the list are of the same sort. If so, the
+	 * last char will be replaced.
 	 */
 	private void checkLastTwoCharsAndReplaceIfNeeded() {
 		if (sst.areTwoSameSort(ww.getPassword(), ww.getMaxChar() - 1, ww.getMaxChar() - 2)) {
@@ -106,7 +104,6 @@ public class WachtwoordGenerator {
 			replaceLastCharWithOtherSort(charLast);
 		}
 	}
-
 
 	/**
 	 * Replaces last char with another random char of another type
