@@ -22,37 +22,42 @@ public class WachtwoordGenerator {
 	private SequenceCondition sq;
 	private TriplicatesCondition tp;
 	private SameSortTogetherCondition sst;
-
-	public void generatePassword(int length) {
-
-		ww = new Wachtwoord(length);
+	
+	public WachtwoordGenerator() {
 		sq = new SequenceCondition();
 		tp = new TriplicatesCondition();
 		sst = new SameSortTogetherCondition();
+	}
+	
 
-		for (int i = 0; i < ww.getMaxChar(); i++) {
+	public void generatePassword(int length) {
+		
+		ww = new Wachtwoord(length);
+
+		for (int i = 0; i < length; i++) {
 
 			char charToAdd = generateChar();
 			ww.addCharToPassword(charToAdd);
 			String charSort = sst.findSortFirstTwo(ww.getPassword());
 
 			replaceTwoTogetherIfNeeded(charToAdd, charSort);
+			
 			replaceFourTogetherIfNeeded(charSort);
+			
 			replaceSequenceIfNeeded(charToAdd);
+			
 			replaceTriplicatesIfNeeded(charToAdd);
 
 		}
 
-		// TODO check last 2 chars
-		if (sst.areTwoSameSort(ww.getPassword(), ww.getMaxChar() - 1, ww.getMaxChar() - 2)) {
-			String charLast = sst.findSortLastTwo(ww.getPassword());
-			replaceLastCharWithOtherSort(charLast);
-		}
-
+		checkLastTwoCharsAndReplaceIfNeeded();
+		
 		System.out.println(ww.toString());
-
+		
 	}
 
+
+	
 	/**
 	 * Checks whether the first two chars of a pair of three are of the same sort.
 	 * If the one before the first (the last of the pair of three before) is of
@@ -79,15 +84,26 @@ public class WachtwoordGenerator {
 			replaceLastCharWithOtherSort(charSort);
 		}
 	}
-	
-	
+
 	/**
-	 * Replaces the last char of a sequence (k,l,m or 1,2,3 c,b,a etc) with another random char.
+	 * Replaces the last char of a sequence (k,l,m or 1,2,3 c,b,a etc) with another
+	 * random char.
+	 * 
 	 * @param charToAdd
 	 */
 	private void replaceSequenceIfNeeded(char charToAdd) {
 		while (sq.testCondition(ww.getPassword(), charToAdd)) {
 			replaceLastChar();
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private void checkLastTwoCharsAndReplaceIfNeeded() {
+		if (sst.areTwoSameSort(ww.getPassword(), ww.getMaxChar() - 1, ww.getMaxChar() - 2)) {
+			String charLast = sst.findSortLastTwo(ww.getPassword());
+			replaceLastCharWithOtherSort(charLast);
 		}
 	}
 
@@ -148,9 +164,10 @@ public class WachtwoordGenerator {
 		}
 	}
 
-	
 	/**
-	 * Checks the list for triplicates and replaces the last char with another random char if needed.
+	 * Checks the list for triplicates and replaces the last char with another
+	 * random char if needed.
+	 * 
 	 * @param charToAdd
 	 */
 	private void replaceTriplicatesIfNeeded(char charToAdd) {
@@ -255,7 +272,6 @@ public class WachtwoordGenerator {
 		return randomSymbol;
 	}
 
-	
 	/**
 	 * Generates one random symbol or digit out of the above symbol&digit string.
 	 * 
