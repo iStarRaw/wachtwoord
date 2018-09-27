@@ -1,5 +1,6 @@
 package ilsa.wachtwoord.conditions;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,18 +21,19 @@ public class TriplicatesCondition implements Condition {
 	 */
 	@Override
 	public boolean testCondition(List<Character> list, char charToAdd) {
-		// TODO aanpassen voor het checken voordat de char wordt toegevoegd
-
-		for (Character c : charCount.keySet()) {
-			Integer count = charCount.get(c);
-			charCount.put(c, (count == null) ? 1 : count + 1);
-
-			if (charCount.containsValue(MAX_COUNT)) {
+		int occurrences = 0;
+		
+		if (list.size() < 3) {
+			return false;
+		}
+		
+		for (int i = 0; i < list.size(); i++) {
+			occurrences = Collections.frequency(list, list.get(i));
+			if (occurrences == 3) {
 				return true;
 			}
 		}
 		return false;
-
 	}
 
 }

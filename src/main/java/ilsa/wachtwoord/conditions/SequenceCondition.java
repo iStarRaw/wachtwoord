@@ -4,9 +4,6 @@ import java.util.List;
 
 public class SequenceCondition implements Condition {
 	
-
-	
-	
 	
 	@Override
 	public boolean testCondition(List<Character> list, char charToAdd) {

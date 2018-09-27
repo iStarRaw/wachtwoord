@@ -57,5 +57,4 @@ public class Wachtwoord {
 		return this.password.stream().map(e -> e.toString()).collect(Collectors.joining());
 	}
 
-	// TODO removeLast()
 }
