@@ -72,7 +72,7 @@ public class WachtwoordGenerator {
 
 	/**
 	 * Checks whether there are four chars of the same sort next to eachother. If
-	 * so, it replaces the last char with a char of another sort.
+	 * so, it replaces the last char with a char of another sort as long as there are four chars of the same sort.
 	 * 
 	 * @param charSort
 	 */
@@ -84,7 +84,7 @@ public class WachtwoordGenerator {
 
 	/**
 	 * Replaces the last char of a sequence (k,l,m or 1,2,3 c,b,a etc) with another
-	 * random char.
+	 * random char as long as there is a sequence.
 	 * 
 	 * @param charToAdd
 	 */
