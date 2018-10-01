@@ -49,8 +49,7 @@ public class WachtwoordGenerator {
 
 		}
 
-		checkLastTwoCharsAndReplaceIfNeeded();
-
+		
 		System.out.println(ww.toString());
 
 	}
