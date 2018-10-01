@@ -113,24 +113,17 @@ public class WachtwoordGenerator {
 	private void replaceLastCharWithOtherSort(String sortChar) {
 		switch (sortChar) {
 		case "Digit":
-			replaceLastCharWith(CANDIDATE_LETTERS_AND_SYMBOLS);
+			replaceLastChar(CANDIDATE_LETTERS_AND_SYMBOLS);
 			break;
 		case "Symbol":
-			replaceLastCharWith(CANDIDATE_DIGITS_AND_LETTERS);
+			replaceLastChar(CANDIDATE_DIGITS_AND_LETTERS);
 			break;
 		case "Letter":
-			replaceLastCharWith(CANDIDATE_SYMBOLS_AND_DIGITS);
+			replaceLastChar(CANDIDATE_SYMBOLS_AND_DIGITS);
 			break;
 		}
 	}
 	
-	
-	private void replaceLastCharWith(String candidateChar) {
-		ww.removeLastChar();
-		char charToAdd = generateChar(candidateChar);
-		ww.addCharToPassword(charToAdd);
-	}
-
 	
 	/**
 	 * Replaces last char with a char of the same sort.
@@ -150,7 +143,20 @@ public class WachtwoordGenerator {
 			break;
 		}
 	}
+	
 
+	/**
+	 * Replaces the last char in the list with a char out of the given String.
+	 * 
+	 * @param candidateChars
+	 */
+	private void replaceLastChar(String candidateChars) {
+		ww.removeLastChar();
+		char charToAdd = generateChar(candidateChars);
+		ww.addCharToPassword(charToAdd);
+	}
+	
+	
 	/**
 	 * Checks the list for triplicates and replaces the last char with another
 	 * random char if needed.
@@ -164,16 +170,7 @@ public class WachtwoordGenerator {
 	}
 	
 	
-	/**
-	 * Replaces the last char in the list with a char out of the given String.
-	 * 
-	 * @param candidateChars
-	 */
-	private void replaceLastChar(String candidateChars) {
-		ww.removeLastChar();
-		char charToAdd = generateChar(candidateChars);
-		ww.addCharToPassword(charToAdd);
-	}
+	
 
 	
 
