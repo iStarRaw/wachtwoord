@@ -3,7 +3,7 @@ package ilsa.wachtwoord;
 import ilsa.wachtwoord.models.WachtwoordGenerator;
 
 /**
- * Hello world!
+ * 
  *
  */
 public class App 
