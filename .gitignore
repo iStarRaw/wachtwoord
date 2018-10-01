@@ -3,6 +3,9 @@
 
 ### Eclipse ###
 
+target
+target/*
+
 .metadata
 bin/
 tmp/
