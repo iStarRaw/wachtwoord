@@ -90,7 +90,7 @@ public class WachtwoordGenerator {
 	 */
 	private void replaceSequenceIfNeeded(char charToAdd) {
 		while (sq.testCondition(ww.getPassword(), charToAdd)) {
-			replaceLastChar();
+			replaceLastChar(CANDIDATE_CHARS);
 		}
 	}
 
@@ -113,35 +113,25 @@ public class WachtwoordGenerator {
 	private void replaceLastCharWithOtherSort(String sortChar) {
 		switch (sortChar) {
 		case "Digit":
-			replaceLastCharWithLetterOrSymbol();
+			replaceLastCharWith(CANDIDATE_LETTERS_AND_SYMBOLS);
 			break;
 		case "Symbol":
-			replaceLastCharWithDigitOrLetter();
+			replaceLastCharWith(CANDIDATE_DIGITS_AND_LETTERS);
 			break;
 		case "Letter":
-			replaceLastCharWithSymbolOrDigit();
+			replaceLastCharWith(CANDIDATE_SYMBOLS_AND_DIGITS);
 			break;
 		}
 	}
-
-	private void replaceLastCharWithSymbolOrDigit() {
+	
+	
+	private void replaceLastCharWith(String candidateChar) {
 		ww.removeLastChar();
-		char charToAdd = generateChar(CANDIDATE_SYMBOLS_AND_DIGITS);
+		char charToAdd = generateChar(candidateChar);
 		ww.addCharToPassword(charToAdd);
 	}
 
-	private void replaceLastCharWithDigitOrLetter() {
-		ww.removeLastChar();
-		char charToAdd = generateChar(CANDIDATE_DIGITS_AND_LETTERS);
-		ww.addCharToPassword(charToAdd);
-	}
-
-	private void replaceLastCharWithLetterOrSymbol() {
-		ww.removeLastChar();
-		char charToAdd = generateChar(CANDIDATE_LETTERS_AND_SYMBOLS);
-		ww.addCharToPassword(charToAdd);
-	}
-
+	
 	/**
 	 * Replaces last char with a char of the same sort.
 	 * 
@@ -150,13 +140,13 @@ public class WachtwoordGenerator {
 	private void replaceLastCharWithSameSort(String sortChar) {
 		switch (sortChar) {
 		case "Digit":
-			replaceLastCharWithDigit();
+			replaceLastChar(CANDIDATE_DIGITS);
 			break;
 		case "Symbol":
-			replaceLastCharWithSymbol();
+			replaceLastChar(CANDIDATE_SYMBOLS);
 			break;
 		case "Letter":
-			replaceLastCharWithLetter();
+			replaceLastChar(CANDIDATE_LETTERS);
 			break;
 		}
 	}
@@ -169,46 +159,23 @@ public class WachtwoordGenerator {
 	 */
 	private void replaceTriplicatesIfNeeded(char charToAdd) {
 		while (tp.testCondition(ww.getPassword(), charToAdd)) {
-			replaceLastChar();
+			replaceLastChar(CANDIDATE_CHARS);
 		}
 	}
-
+	
+	
 	/**
-	 * Replaces last char with random char of type letter.
+	 * Replaces the last char in the list with a char out of the given String.
+	 * 
+	 * @param candidateChars
 	 */
-	private void replaceLastCharWithLetter() {
+	private void replaceLastChar(String candidateChars) {
 		ww.removeLastChar();
-		char charToAdd = generateChar(CANDIDATE_LETTERS);
+		char charToAdd = generateChar(candidateChars);
 		ww.addCharToPassword(charToAdd);
 	}
 
-	/**
-	 * Replaces last char with random char of type symbol.
-	 */
-	private void replaceLastCharWithSymbol() {
-		ww.removeLastChar();
-		char charToAdd = generateChar(CANDIDATE_SYMBOLS);
-		ww.addCharToPassword(charToAdd);
-	}
-
-	/**
-	 * Replaces last char with a random char of type digit.
-	 */
-	private void replaceLastCharWithDigit() {
-		ww.removeLastChar();
-		char charToAdd = generateChar(CANDIDATE_DIGITS);
-		ww.addCharToPassword(charToAdd);
-	}
-
-	/**
-	 * Replaces last char with another random char.
-	 */
-	private void replaceLastChar() {
-		ww.removeLastChar();
-		char charToAdd = generateChar(CANDIDATE_CHARS);
-		ww.addCharToPassword(charToAdd);
-	}
-
+	
 
 	/**
 	 * Generates a random char out of the given String.
