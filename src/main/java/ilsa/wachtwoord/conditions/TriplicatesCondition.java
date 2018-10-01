@@ -1,17 +1,11 @@
 package ilsa.wachtwoord.conditions;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class TriplicatesCondition implements Condition {
-	private Map<Character, Integer> charCount;
-	private final int MAX_COUNT = 3;
 
-	public TriplicatesCondition() {
-		charCount = new HashMap<Character, Integer>();
-	}
+	
 
 	/**
 	 * Checks whether the password contains the same char 3 times.
