@@ -63,6 +63,9 @@ local.properties
 # Eclipse Core
 .project
 
+#PMD 
+.pmd
+
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
