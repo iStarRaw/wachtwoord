@@ -1,10 +1,6 @@
-
 # Created by https://www.gitignore.io/api/java,macos,windows,eclipse,intellij
 
 ### Eclipse ###
-
-target
-target/*
 
 .metadata
 bin/
