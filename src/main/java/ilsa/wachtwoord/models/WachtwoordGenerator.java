@@ -35,7 +35,7 @@ public class WachtwoordGenerator {
 
 		for (int i = 0; i < length; i++) {
 
-			char charToAdd = generateChar();
+			char charToAdd = generateChar(CANDIDATE_CHARS);
 			ww.addCharToPassword(charToAdd);
 			String charSort = sst.findSortFirstTwo(ww.getPassword());
 
@@ -126,19 +126,19 @@ public class WachtwoordGenerator {
 
 	private void replaceLastCharWithSymbolOrDigit() {
 		ww.removeLastChar();
-		char charToAdd = generateSymbolOrDigit();
+		char charToAdd = generateChar(CANDIDATE_SYMBOLS_AND_DIGITS);
 		ww.addCharToPassword(charToAdd);
 	}
 
 	private void replaceLastCharWithDigitOrLetter() {
 		ww.removeLastChar();
-		char charToAdd = generateDigitOrLetter();
+		char charToAdd = generateChar(CANDIDATE_DIGITS_AND_LETTERS);
 		ww.addCharToPassword(charToAdd);
 	}
 
 	private void replaceLastCharWithLetterOrSymbol() {
 		ww.removeLastChar();
-		char charToAdd = generateLetterOrSymbol();
+		char charToAdd = generateChar(CANDIDATE_LETTERS_AND_SYMBOLS);
 		ww.addCharToPassword(charToAdd);
 	}
 
@@ -178,7 +178,7 @@ public class WachtwoordGenerator {
 	 */
 	private void replaceLastCharWithLetter() {
 		ww.removeLastChar();
-		char charToAdd = generateLetter();
+		char charToAdd = generateChar(CANDIDATE_LETTERS);
 		ww.addCharToPassword(charToAdd);
 	}
 
@@ -187,7 +187,7 @@ public class WachtwoordGenerator {
 	 */
 	private void replaceLastCharWithSymbol() {
 		ww.removeLastChar();
-		char charToAdd = generateSymbol();
+		char charToAdd = generateChar(CANDIDATE_SYMBOLS);
 		ww.addCharToPassword(charToAdd);
 	}
 
@@ -196,7 +196,7 @@ public class WachtwoordGenerator {
 	 */
 	private void replaceLastCharWithDigit() {
 		ww.removeLastChar();
-		char charToAdd = generateDigit();
+		char charToAdd = generateChar(CANDIDATE_DIGITS);
 		ww.addCharToPassword(charToAdd);
 	}
 
@@ -205,114 +205,26 @@ public class WachtwoordGenerator {
 	 */
 	private void replaceLastChar() {
 		ww.removeLastChar();
-		char charToAdd = generateChar();
+		char charToAdd = generateChar(CANDIDATE_CHARS);
 		ww.addCharToPassword(charToAdd);
 	}
 
+
 	/**
-	 * Generates one random char out of the above char string.
+	 * Generates a random char out of the given String.
 	 * 
+	 * @param candidateChars
 	 * @return char
 	 */
-	public char generateChar() {
-		int index = secGenerator.nextInt(CANDIDATE_CHARS.length());
+	public char generateChar(String candidateChars) {
+		int index = secGenerator.nextInt(candidateChars.length());
 
-		while (index < 0 || index > CANDIDATE_CHARS.length()) {
-			index = secGenerator.nextInt(CANDIDATE_CHARS.length());
+		while (index < 0 || index > candidateChars.length()) {
+			index = secGenerator.nextInt(candidateChars.length());
 		}
-		char randomChar = CANDIDATE_CHARS.charAt(index);
+		char randomChar = candidateChars.charAt(index);
 		return randomChar;
 	}
 
-	/**
-	 * Generates one random digit out of the above digit string.
-	 * 
-	 * @return char
-	 */
-	public char generateDigit() {
-		int index = secGenerator.nextInt(CANDIDATE_DIGITS.length());
-
-		while (index < 0 || index > CANDIDATE_DIGITS.length()) {
-			index = secGenerator.nextInt(CANDIDATE_DIGITS.length());
-		}
-		char randomDigit = CANDIDATE_DIGITS.charAt(index);
-		return randomDigit;
-	}
-
-	/**
-	 * Generates one random letter out of the above letter string.
-	 * 
-	 * @return char
-	 */
-	public char generateLetter() {
-		int index = secGenerator.nextInt(CANDIDATE_LETTERS.length());
-
-		while (index < 0 || index > CANDIDATE_LETTERS.length()) {
-			index = secGenerator.nextInt(CANDIDATE_LETTERS.length());
-		}
-		char randomLetter = CANDIDATE_LETTERS.charAt(secGenerator.nextInt(CANDIDATE_LETTERS.length()));
-		return randomLetter;
-	}
-
-	/**
-	 * Generates one random symbol out of the above symbol string.
-	 * 
-	 * @return char
-	 */
-	public char generateSymbol() {
-		int index = secGenerator.nextInt(CANDIDATE_SYMBOLS.length());
-
-		while (index < 0 || index > CANDIDATE_SYMBOLS.length()) {
-			index = secGenerator.nextInt(CANDIDATE_SYMBOLS.length());
-		}
-		char randomSymbol = CANDIDATE_SYMBOLS.charAt(secGenerator.nextInt(CANDIDATE_SYMBOLS.length()));
-		return randomSymbol;
-	}
-
-	/**
-	 * Generates one random symbol or digit out of the above symbol&digit string.
-	 * 
-	 * @return char
-	 */
-	private char generateSymbolOrDigit() {
-		int index = secGenerator.nextInt(CANDIDATE_SYMBOLS_AND_DIGITS.length());
-
-		while (index < 0 || index > CANDIDATE_SYMBOLS_AND_DIGITS.length()) {
-			index = secGenerator.nextInt(CANDIDATE_SYMBOLS_AND_DIGITS.length());
-		}
-		char randomSymbolOrDigit = CANDIDATE_SYMBOLS_AND_DIGITS
-				.charAt(secGenerator.nextInt(CANDIDATE_SYMBOLS_AND_DIGITS.length()));
-		return randomSymbolOrDigit;
-	}
-
-	/**
-	 * Generates one random digit or letter out of the above digit&letter string.
-	 * 
-	 * @return char
-	 */
-	private char generateDigitOrLetter() {
-		int index = secGenerator.nextInt(CANDIDATE_DIGITS_AND_LETTERS.length());
-
-		while (index < 0 || index > CANDIDATE_DIGITS_AND_LETTERS.length()) {
-			index = secGenerator.nextInt(CANDIDATE_DIGITS_AND_LETTERS.length());
-		}
-		char randomDigit = CANDIDATE_DIGITS_AND_LETTERS.charAt(index);
-		return randomDigit;
-	}
-
-	/**
-	 * Generates one random letter of symbol out of the above letter&symbol string.
-	 * 
-	 * @return char
-	 */
-	private char generateLetterOrSymbol() {
-		int index = secGenerator.nextInt(CANDIDATE_LETTERS_AND_SYMBOLS.length());
-
-		while (index < 0 || index > CANDIDATE_LETTERS_AND_SYMBOLS.length()) {
-			index = secGenerator.nextInt(CANDIDATE_LETTERS_AND_SYMBOLS.length());
-		}
-		char randomSymbol = CANDIDATE_LETTERS_AND_SYMBOLS
-				.charAt(secGenerator.nextInt(CANDIDATE_LETTERS_AND_SYMBOLS.length()));
-		return randomSymbol;
-	}
+	
 }

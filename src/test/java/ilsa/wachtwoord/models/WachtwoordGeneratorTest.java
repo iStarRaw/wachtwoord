@@ -27,7 +27,7 @@ public class WachtwoordGeneratorTest {
 		String candidateChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
 		String noCandidateChar = " ";
 		
-		char result = wg.generateChar();
+		char result = wg.generateChar(candidateChars);
 		
 		assertTrue(candidateChars.contains(Character.toString(result)));
 		assertFalse(noCandidateChar.contains(Character.toString(result)));
