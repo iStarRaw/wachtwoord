@@ -12,6 +12,10 @@ public class SameSortTogetherCondition implements Condition {
 	 */
 	@Override
 	public boolean testCondition(List<Character> list, char charToAdd) {
+		// TODO aanpassen zodat hij meet of er 2 van hetzelfde soort geisoleerd staan
+		// dus toevoegen wat zit er voor 2 dezelfde
+		// ook toevoegen 4 dezelfde
+		// method overloaden met String bijv getCondition zodat je weet welke wordt geschonden?
 		if (firstTwoSameSort(list)) {
 			if (firstTwoDigit(list)) {
 				return !lastThreeDigits(list);
@@ -198,10 +202,6 @@ public class SameSortTogetherCondition implements Condition {
 	public boolean charIsSymbol(Character c) {
 		return CANDIDATE_SYMBOLS.contains(Character.toString(c));
 
-	}
-
-	public boolean isListSmallerThan(List<Character> list, int size) {
-		return list.size() < size;
 	}
 
 	private boolean lastFourSymbol(List<Character> list) {
