@@ -46,9 +46,19 @@ public class WachtwoordGenerator {
 			replaceSequenceIfNeeded(charToAdd);
 
 			replaceTriplicatesIfNeeded(charToAdd);
-
-		}
-
+			
+			System.out.println(ww.toString());
+			
+			//TODO check last 2 chars
+			if (i == length - 1) {
+				if (sst.lastTwoSameSort(ww.getPassword()) && !sst.lastThreeSameSort(ww.getPassword())) {
+					charSort = sst.findSortLastTwo(ww.getPassword());
+					replaceLastCharWithOtherSort(charSort);
+				}
+			}
+			
+			
+		}		
 		
 		System.out.println(ww.toString());
 
@@ -92,20 +102,10 @@ public class WachtwoordGenerator {
 			replaceLastChar(CANDIDATE_CHARS);
 		}
 	}
+	
 
 	/**
-	 * Checks if the last two chars of the list are of the same sort. If so, the
-	 * last char will be replaced.
-	 */
-	private void checkLastTwoCharsAndReplaceIfNeeded() {
-		if (sst.areTwoSameSort(ww.getPassword(), ww.getMaxChar() - 1, ww.getMaxChar() - 2)) {
-			String charLast = sst.findSortLastTwo(ww.getPassword());
-			replaceLastCharWithOtherSort(charLast);
-		}
-	}
-
-	/**
-	 * Replaces last char with another random char of another type
+	 * Replaces last char with another random char of type
 	 * 
 	 * @param sortChar
 	 */
@@ -170,9 +170,6 @@ public class WachtwoordGenerator {
 	
 	
 	
-
-	
-
 	/**
 	 * Generates a random char out of the given String.
 	 * 

@@ -48,6 +48,23 @@ public class SameSortTogetherCondition implements Condition {
 		}
 		return "Letter";
 	}
+	
+	public boolean lastTwoSameSort(List<Character> list) {
+		return lastTwoSymbol(list) || lastTwoLetter(list) || lastTwoDigit(list);
+	}
+
+	private boolean lastTwoLetter(List<Character> list) {
+		try {
+			if (Character.isLetter(list.get(list.size() - 2)) && Character.isLetter(list.get(list.size() - 1))) {
+				return true;
+			}
+			return false;
+
+		} catch (IndexOutOfBoundsException e) {
+//			System.out.println(e.getMessage());
+			return false;
+		}
+	}
 
 	private boolean lastTwoSymbol(List<Character> list) {
 		try {
