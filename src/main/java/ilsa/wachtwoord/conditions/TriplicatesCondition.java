@@ -1,6 +1,5 @@
 package ilsa.wachtwoord.conditions;
 
-import java.util.Collections;
 import java.util.List;
 
 public class TriplicatesCondition implements Condition {
@@ -22,10 +21,13 @@ public class TriplicatesCondition implements Condition {
 		}
 		
 		for (int i = 0; i < list.size(); i++) {
-			occurrences = Collections.frequency(list, list.get(i));
-			if (occurrences == 3) {
-				return true;
+			if (list.get(i) == charToAdd) {
+				occurrences ++;
 			}
+		}
+		
+		if (occurrences == 3) {
+			return true;
 		}
 		return false;
 	}
