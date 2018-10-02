@@ -21,9 +21,9 @@ class TriplicatesTest {
 	}
 
 	@Test
-	public void testContainsTriplicatesforThreeChars() {
+	public void testContainsTriplicatesTrue() {
 		list = new ArrayList<>(Arrays.asList('d', 'e', 'k', 'e', 'w', 'y', 'q', 'e'));
-		char charToAdd = 'c';
+		char charToAdd = 'e';
 
 		boolean resultTrue = tp.testCondition(list, charToAdd);
 
@@ -32,8 +32,8 @@ class TriplicatesTest {
 
 	@Test
 	public void testContainsTriplicatesFalse() {
-		list = new ArrayList<>(Arrays.asList('d', 'e', 'k', 'e', 'w', 'y', 'q', 'r'));
-		char charToAdd = 'c';
+		list = new ArrayList<>(Arrays.asList('d', 'e', 'k', 't', 'w', 'y', 'q', 'e'));
+		char charToAdd = 'e';
 
 		boolean resultFalse = tp.testCondition(list, charToAdd);
 
@@ -43,7 +43,7 @@ class TriplicatesTest {
 	@Test
 	public void testContainsTriplicatesFalseOnlyDuplicates() {
 		list = new ArrayList<>(Arrays.asList('d', 'e', 'k', 'e', 'w', 'w', 'q', 'r'));
-		char charToAdd = 'c';
+		char charToAdd = 'e';
 
 		boolean resultFalse = tp.testCondition(list, charToAdd);
 
