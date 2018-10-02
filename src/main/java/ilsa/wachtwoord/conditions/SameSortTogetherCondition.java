@@ -61,7 +61,7 @@ public class SameSortTogetherCondition implements Condition {
 			return false;
 
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -70,7 +70,7 @@ public class SameSortTogetherCondition implements Condition {
 		try {
 			return charIsSymbol(list.get(list.size() - 1)) && charIsSymbol(list.get(list.size() - 2));
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -83,7 +83,7 @@ public class SameSortTogetherCondition implements Condition {
 			return false;
 
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -100,7 +100,7 @@ public class SameSortTogetherCondition implements Condition {
 			}
 			return false;
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());	
+			System.out.println(e.getMessage());	
 			return false;
 		}
 	}
@@ -130,7 +130,7 @@ public class SameSortTogetherCondition implements Condition {
 			return false;
 
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -140,7 +140,7 @@ public class SameSortTogetherCondition implements Condition {
 			return charIsSymbol(list.get(list.size() - 2)) && charIsSymbol(list.get(list.size() - 3))
 					&& charIsSymbol(list.get(list.size() - 4));
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -154,7 +154,7 @@ public class SameSortTogetherCondition implements Condition {
 			return false;
 
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -164,7 +164,7 @@ public class SameSortTogetherCondition implements Condition {
 			return (charIsSymbol(list.get(list.size() - 1)) && charIsSymbol(list.get(list.size() - 2))
 					&& charIsSymbol(list.get(list.size() - 3)));
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -174,7 +174,7 @@ public class SameSortTogetherCondition implements Condition {
 			return Character.isDigit(list.get(list.size() - 1)) && Character.isDigit(list.get(list.size() - 2))
 					&& Character.isDigit(list.get(list.size() - 3));
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 
@@ -185,7 +185,7 @@ public class SameSortTogetherCondition implements Condition {
 			return Character.isLetter(list.get(list.size() - 1)) && Character.isLetter(list.get(list.size() - 2))
 					&& Character.isLetter(list.get(list.size() - 3));
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -198,7 +198,7 @@ public class SameSortTogetherCondition implements Condition {
 			return false;
 
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -211,7 +211,7 @@ public class SameSortTogetherCondition implements Condition {
 			return false;
 
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -221,7 +221,7 @@ public class SameSortTogetherCondition implements Condition {
 			return !Character.isDigit(list.get(list.size() - 3)) && !Character.isLetter(list.get(list.size() - 3))
 					&& !Character.isDigit(list.get(list.size() - 2)) && !Character.isLetter(list.get(list.size() - 2));
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -235,7 +235,7 @@ public class SameSortTogetherCondition implements Condition {
 		try {
 			return firstTwoLetter(list) && Character.isLetter(list.get(list.size() - 4));
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -244,7 +244,7 @@ public class SameSortTogetherCondition implements Condition {
 		try {
 			return firstTwoDigit(list) && Character.isDigit(list.get(list.size() - 4));
 		} catch (IndexOutOfBoundsException e) {
-//		System.out.println(e.getMessage());
+		System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -253,7 +253,7 @@ public class SameSortTogetherCondition implements Condition {
 		try {
 			return firstTwoSymbol(list) && charIsSymbol(list.get(list.size() - 4));
 		} catch (IndexOutOfBoundsException e) {
-//		System.out.println(e.getMessage());
+		System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -272,7 +272,7 @@ public class SameSortTogetherCondition implements Condition {
 			return charIsSymbol(list.get(list.size() - 1)) && charIsSymbol(list.get(list.size() - 2))
 					&& charIsSymbol(list.get(list.size() - 3)) && charIsSymbol(list.get(list.size() - 4));
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -282,7 +282,7 @@ public class SameSortTogetherCondition implements Condition {
 			return Character.isDigit(list.get(list.size() - 1)) && Character.isDigit(list.get(list.size() - 2))
 					&& Character.isDigit(list.get(list.size() - 3)) && Character.isDigit(list.get(list.size() - 4));
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -292,7 +292,7 @@ public class SameSortTogetherCondition implements Condition {
 			return Character.isLetter(list.get(list.size() - 1)) && Character.isLetter(list.get(list.size() - 2))
 					&& Character.isLetter(list.get(list.size() - 3)) && Character.isLetter(list.get(list.size() - 4));
 		} catch (IndexOutOfBoundsException e) {
-//			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
