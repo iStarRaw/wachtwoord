@@ -7,13 +7,13 @@ import ilsa.wachtwoord.conditions.SequenceCondition;
 import ilsa.wachtwoord.conditions.TriplicatesCondition;
 
 public class WachtwoordGenerator {
-	private final String CANDIDATE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
-	private final String CANDIDATE_DIGITS = "0123456789";
-	private final String CANDIDATE_SYMBOLS = "!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
-	private final String CANDIDATE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	private final String CANDIDATE_SYMBOLS_AND_DIGITS = "!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,0123456789";
-	private final String CANDIDATE_DIGITS_AND_LETTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	private final String CANDIDATE_LETTERS_AND_SYMBOLS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\"!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
+	private static final String CANDIDATE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
+	private static final String CANDIDATE_DIGITS = "0123456789";
+	private static final String CANDIDATE_SYMBOLS = "!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
+	private static final String CANDIDATE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	private static final String CANDIDATE_SYMBOLS_AND_DIGITS = "!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,0123456789";
+	private static final String CANDIDATE_DIGITS_AND_LETTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	private static final String CANDIDATE_LETTERS_AND_SYMBOLS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\"!@#$%~_^&*/(/)///-/+/=/[/]/{/}/|/`?><.,";
 
 	private SecureRandom secGenerator = new SecureRandom();
 
@@ -50,13 +50,10 @@ public class WachtwoordGenerator {
 			System.out.println(ww.toString());
 			
 			//TODO check last 2 chars
-			if (i == length - 1) {
-				if (sst.lastTwoSameSort(ww.getPassword()) && !sst.lastThreeSameSort(ww.getPassword())) {
+			if (i == length - 1 && (sst.lastTwoSameSort(ww.getPassword()) && !sst.lastThreeSameSort(ww.getPassword()))) {
 					charSort = sst.findSortLastTwo(ww.getPassword());
 					replaceLastCharWithOtherSort(charSort);
-				}
 			}
-			
 			
 		}		
 		
