@@ -8,7 +8,6 @@ public class Wachtwoord {
 	private List<Character> password;
 	private int maxChar;
 	private int index_last;
-	private int index_max;
 
 	public Wachtwoord() {
 		password = new ArrayList<>();
@@ -17,21 +16,13 @@ public class Wachtwoord {
 	public Wachtwoord(int maxChar) {
 		this.maxChar = maxChar;
 		password = new ArrayList<>(this.maxChar);
-		index_max = maxChar - 1;
 	}
 
 	public List<Character> getPassword() {
 		return this.password;
 	}
 
-	public int getMaxChar() {
-		return this.maxChar;
-	}
-
-	public int getIndex_max() {
-		return index_max;
-	}
-
+	
 	/**
 	 * Adds a char to the password
 	 * 
@@ -43,10 +34,7 @@ public class Wachtwoord {
 		index_last = this.password.size() - 1;
 	}
 
-	public void getLastChar() {
-		this.password.get(index_last);
-	}
-
+	
 	public void removeLastChar() {
 		this.password.remove(index_last);
 	}

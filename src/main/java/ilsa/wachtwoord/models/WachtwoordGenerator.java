@@ -34,13 +34,16 @@ public class WachtwoordGenerator {
 		ww = new Wachtwoord(length);
 
 		for (int i = 0; i < length; i++) {
+			
+			//TODO als ik heb gechecked op 1 conditie moet ik ook weer alle andere nalopen.
 
 			char charToAdd = generateChar(CANDIDATE_CHARS);
 			ww.addCharToPassword(charToAdd);
 			String charSort = sst.findSortFirstTwo(ww.getPassword());
 
+			
 			replaceTwoTogetherIfNeeded(charToAdd, charSort);
-
+			
 			replaceFourTogetherIfNeeded(charSort);
 
 			replaceSequenceIfNeeded(charToAdd);
@@ -71,10 +74,12 @@ public class WachtwoordGenerator {
 	 * @param charSort
 	 */
 	private void replaceTwoTogetherIfNeeded(char charToAdd, String charSort) {
+		//als twee naast elkaar zelfde, 3 naast elkaar niet, en de laatste ervoor ook niet. dan vervangen
 		if (sst.testCondition(ww.getPassword(), charToAdd) && !sst.firstTwoSameAndBeforeAsWell(ww.getPassword())) {
 			replaceLastCharWithSameSort(charSort);
 		}
 	}
+
 
 	/**
 	 * Checks whether there are four chars of the same sort next to eachother. If
@@ -161,6 +166,7 @@ public class WachtwoordGenerator {
 	 */
 	private void replaceTriplicatesIfNeeded(char charToAdd) {
 		while (tp.testCondition(ww.getPassword(), charToAdd)) {
+			
 			replaceLastChar(CANDIDATE_CHARS);
 		}
 	}

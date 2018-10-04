@@ -198,8 +198,7 @@ public class SameSortTogetherCondition implements Condition {
 		}
 	}
 
-	//public voor test
-	public boolean charIsSymbol(Character c) {
+	private boolean charIsSymbol(Character c) {
 		return CANDIDATE_SYMBOLS.contains(Character.toString(c));
 
 	}

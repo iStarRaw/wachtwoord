@@ -19,23 +19,6 @@ class SameSortTogetherConditionTest {
 
 	}
 
-	@Test
-	void testCharIsSymbol() {
-		char a = 'e';
-		char b = '&';
-		char c = '4';
-		char d = '-';
-
-		boolean expected1 = sst.charIsSymbol(a);
-		boolean expected2 = sst.charIsSymbol(b);
-		boolean expected3 = sst.charIsSymbol(c);
-		boolean expected4 = sst.charIsSymbol(d);
-
-		assertFalse(expected1);
-		assertTrue(expected2);
-		assertFalse(expected3);
-		assertTrue(expected4);
-	}
 
 	@Test
 	void testLastThreeAreSymbolsLargeList() {
